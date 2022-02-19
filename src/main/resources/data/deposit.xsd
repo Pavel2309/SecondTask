@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="deposits"
+        xmlns:tns="deposits"
+        elementFormDefault="qualified">
+
+    <element name="deposit" type="tns:deposit" abstract="true"/>
+    <element name="demand-deposit" type="tns:demandDeposit" substitutionGroup="tns:deposit" />
+    <element name="time-deposit" type="tns:timeDeposit" substitutionGroup="tns:deposit" />
+
+    <element name="banks">
+        <complexType>
+            <sequence>
+                <element ref="tns:deposit" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="deposit">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="country" type="tns:country"/>
+            <element name="depositor" type="string"/>
+            <element name="amount" type="tns:amountOnDeposit"/>
+            <element name="profitability" type="tns:profitability"/>
+            <element name="timeConstraint" type="gMonth"/>
+        </sequence>
+        <attribute name="id" type="tns:accountId" use="required"/>
+        <attribute name="auto_renew" use="optional" default="no"/>
+    </complexType>
+
+    <complexType name="demandDeposit">
+        <complexContent>
+            <extension base="tns:deposit">
+                <sequence>
+                    <element name="type" type="tns:demandDepositType" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="timeDeposit">
+        <complexContent>
+            <extension base="tns:deposit">
+                <sequence>
+                    <element name="penalty" type="double" />
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="demandDepositType">
+        <restriction base="string">
+            <enumeration value="checkingAccount" />
+            <enumeration value="savingAccount" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="accountId">
+        <restriction base="ID">
+            <pattern value="\w{1,30}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="country">
+        <restriction base="string" >
+            <enumeration value="Belarus" />
+            <enumeration value="Switzerland" />
+            <enumeration value="China" />
+            <enumeration value="USA" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="amountOnDeposit">
+        <restriction base="double">
+            <minInclusive value="0" />
+            <maxInclusive value="9999999" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="profitability">
+        <restriction base="double" >
+            <minInclusive value="0" />
+            <maxInclusive value="1000" />
+        </restriction>
+    </simpleType>
+
+</schema>
