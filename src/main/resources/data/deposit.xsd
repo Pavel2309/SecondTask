@@ -4,10 +4,6 @@
         xmlns:tns="deposits"
         elementFormDefault="qualified">
 
-    <element name="deposit" type="tns:deposit" abstract="true"/>
-    <element name="demand-deposit" type="tns:demandDeposit" substitutionGroup="tns:deposit" />
-    <element name="time-deposit" type="tns:timeDeposit" substitutionGroup="tns:deposit" />
-
     <element name="banks">
         <complexType>
             <sequence>
@@ -15,6 +11,10 @@
             </sequence>
         </complexType>
     </element>
+
+    <element name="deposit" type="tns:deposit" abstract="true"/>
+    <element name="demand-deposit" type="tns:demandDeposit" substitutionGroup="tns:deposit" />
+    <element name="time-deposit" type="tns:timeDeposit" substitutionGroup="tns:deposit" />
 
     <complexType name="deposit">
         <sequence>
@@ -26,7 +26,7 @@
             <element name="timeConstraint" type="gMonth"/>
         </sequence>
         <attribute name="id" type="tns:accountId" use="required"/>
-        <attribute name="auto_renew" use="optional" default="no"/>
+        <attribute name="auto-renew" use="optional" default="no"/>
     </complexType>
 
     <complexType name="demandDeposit">

@@ -15,6 +15,10 @@ public abstract class Deposit {
     private int profitability;
     private YearMonth timeConstraint;
 
+    public Deposit() {
+
+    }
+
     public Deposit(String id, boolean isAutoRenewable, String name, Country country, String depositor, int amount, int profitability, YearMonth timeConstraint) {
         this.id = id;
         this.isAutoRenewable = isAutoRenewable;
