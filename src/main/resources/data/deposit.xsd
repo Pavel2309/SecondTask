@@ -23,10 +23,10 @@
             <element name="depositor" type="string"/>
             <element name="amount" type="tns:amountOnDeposit"/>
             <element name="profitability" type="tns:profitability"/>
-            <element name="timeConstraint" type="gMonth"/>
+            <element name="timeConstraint" type="gYearMonth"/>
         </sequence>
         <attribute name="id" type="tns:accountId" use="required"/>
-        <attribute name="auto-renew" use="optional" default="no"/>
+        <attribute name="auto-renew" use="optional" default="0"/>
     </complexType>
 
     <complexType name="demandDeposit">
@@ -58,7 +58,7 @@
 
     <simpleType name="accountId">
         <restriction base="ID">
-            <pattern value="\w{1,30}"/>
+            <pattern value="\w{3}-\d{6}"/>
         </restriction>
     </simpleType>
 

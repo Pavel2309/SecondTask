@@ -1,8 +1,96 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<deposit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--         xmlns="deposits"-->
-<!--         xsi:schemaLocation="deposits deposit.xsd">-->
-<!--    -->
-<!--    -->
-<!--    -->
-<!--</deposit>-->
+<?xml version="1.0" encoding="UTF-8"?>
+<banks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="deposits"
+       xsi:schemaLocation="deposits deposit.xsd">
+
+    <demand-deposit id="ABC-439532">
+        <name>Demand deposit 1</name>
+        <country>China</country>
+        <depositor>Eric Cartman</depositor>
+        <amount>10000</amount>
+        <profitability>3</profitability>
+        <timeConstraint>2022-04</timeConstraint>
+        <type>checkingAccount</type>
+    </demand-deposit>
+
+    <demand-deposit id="AAC-423212" auto-renew="1">
+        <name>Demand deposit 2</name>
+        <country>Belarus</country>
+        <depositor>Stan Marsh</depositor>
+        <amount>5000</amount>
+        <profitability>10</profitability>
+        <timeConstraint>2025-04</timeConstraint>
+        <type>savingAccount</type>
+    </demand-deposit>
+
+    <time-deposit id="AAC-233212">
+        <name>Time deposit 1</name>
+        <country>Switzerland</country>
+        <depositor>Butters Stotch</depositor>
+        <amount>30500</amount>
+        <profitability>7</profitability>
+        <timeConstraint>2024-08</timeConstraint>
+        <penalty>1000</penalty>
+    </time-deposit>
+
+    <time-deposit id="AHC-123002">
+        <name>Time deposit 2</name>
+        <country>USA</country>
+        <depositor>Kyle Broflovski</depositor>
+        <amount>30500</amount>
+        <profitability>15</profitability>
+        <timeConstraint>2023-08</timeConstraint>
+        <penalty>2000</penalty>
+    </time-deposit>
+
+    <demand-deposit id="ABC-429532" auto-renew="1">
+        <name>Demand deposit 4</name>
+        <country>China</country>
+        <depositor>Kenny McCormick</depositor>
+        <amount>10</amount>
+        <profitability>3</profitability>
+        <timeConstraint>2022-09</timeConstraint>
+        <type>checkingAccount</type>
+    </demand-deposit>
+
+    <demand-deposit id="ARC-423232">
+        <name>Demand deposit 2</name>
+        <country>China</country>
+        <depositor>Randy Marsh</depositor>
+        <amount>7000</amount>
+        <profitability>12</profitability>
+        <timeConstraint>2024-07</timeConstraint>
+        <type>savingAccount</type>
+    </demand-deposit>
+
+    <time-deposit id="BHC-325722">
+        <name>Time deposit 2</name>
+        <country>Switzerland</country>
+        <depositor>Wendy Testaburger</depositor>
+        <amount>30500</amount>
+        <profitability>15</profitability>
+        <timeConstraint>2023-08</timeConstraint>
+        <penalty>3000</penalty>
+    </time-deposit>
+
+    <demand-deposit id="AAA-874012">
+        <name>Demand deposit 1</name>
+        <country>China</country>
+        <depositor>Jimmy Valmer</depositor>
+        <amount>4000</amount>
+        <profitability>6</profitability>
+        <timeConstraint>2023-12</timeConstraint>
+        <type>checkingAccount</type>
+    </demand-deposit>
+
+    <demand-deposit id="AZA-874012" auto-renew="1">
+        <name>Demand deposit 1</name>
+        <country>Belarus</country>
+        <depositor>Scott Malkinson</depositor>
+        <amount>2000</amount>
+        <profitability>1</profitability>
+        <timeConstraint>2028-12</timeConstraint>
+        <type>savingAccount</type>
+    </demand-deposit>
+
+</banks>

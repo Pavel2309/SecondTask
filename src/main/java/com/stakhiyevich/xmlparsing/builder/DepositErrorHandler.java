@@ -12,20 +12,20 @@ public class DepositErrorHandler implements ErrorHandler {
 
     @Override
     public void warning(SAXParseException e) throws SAXException {
-        logger.warn(getErrorPosition(e) + ": " + e.getMessage());
+        logger.warn(getLineColumnNumber(e) + " - " + e.getMessage());
     }
 
     @Override
     public void error(SAXParseException e) throws SAXException {
-        logger.error(getErrorPosition(e) + ": " + e.getMessage());
+        logger.error(getLineColumnNumber(e) + " - " + e.getMessage());
     }
 
     @Override
     public void fatalError(SAXParseException e) throws SAXException {
-        logger.fatal(getErrorPosition(e) + ": " + e.getMessage());
+        logger.fatal(getLineColumnNumber(e) + " - " + e.getMessage());
     }
 
-    private String getErrorPosition(SAXParseException e) {
+    private String getLineColumnNumber(SAXParseException e) {
         return e.getLineNumber() + " : " + e.getColumnNumber();
     }
 }
