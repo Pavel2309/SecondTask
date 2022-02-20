@@ -7,12 +7,13 @@ enum DepositXmlTag {
     AUTO_RENEW("auto-renew"),
     DEMAND_DEPOSIT("demand-deposit"),
     TIME_DEPOSIT("time-deposit"),
+
     NAME("name"),
     COUNTRY("country"),
     DEPOSITOR("depositor"),
     AMOUNT("amount"),
     PROFITABILITY("profitability"),
-    TIME_CONSTRAINT("timeConstraint"),
+    TIME_CONSTRAINT("time-constraint"),
     TYPE("type"),
     PENALTY("penalty");
 

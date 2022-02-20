@@ -9,8 +9,8 @@
         <depositor>Eric Cartman</depositor>
         <amount>10000</amount>
         <profitability>3</profitability>
-        <timeConstraint>2022-04</timeConstraint>
-        <type>checkingAccount</type>
+        <time-constraint>2022-04</time-constraint>
+        <type>checking-account</type>
     </demand-deposit>
 
     <time-deposit id="AAC-233212">
@@ -19,7 +19,7 @@
         <depositor>Butters Stotch</depositor>
         <amount>30500</amount>
         <profitability>7</profitability>
-        <timeConstraint>2024-08</timeConstraint>
+        <time-constraint>2024-08</time-constraint>
         <penalty>1000</penalty>
     </time-deposit>
 

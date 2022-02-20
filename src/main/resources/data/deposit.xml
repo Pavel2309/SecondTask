@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<banks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="deposits"
-       xsi:schemaLocation="deposits deposit.xsd">
+<deposits xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://www.example.com/deposits"
+          xsi:schemaLocation="http://www.example.com/deposits ../data/deposit.xsd">
 
     <demand-deposit id="ABC-439532">
         <name>Demand deposit 1</name>
@@ -9,8 +9,8 @@
         <depositor>Eric Cartman</depositor>
         <amount>10000</amount>
         <profitability>3</profitability>
-        <timeConstraint>2022-04</timeConstraint>
-        <type>checkingAccount</type>
+        <time-constraint>2022-04</time-constraint>
+        <type>checking-account</type>
     </demand-deposit>
 
     <demand-deposit id="AAC-423212" auto-renew="true">
@@ -19,8 +19,8 @@
         <depositor>Stan Marsh</depositor>
         <amount>5000</amount>
         <profitability>10</profitability>
-        <timeConstraint>2025-04</timeConstraint>
-        <type>savingAccount</type>
+        <time-constraint>2025-04</time-constraint>
+        <type>saving-account</type>
     </demand-deposit>
 
     <time-deposit id="AAC-233212">
@@ -29,7 +29,7 @@
         <depositor>Butters Stotch</depositor>
         <amount>30500</amount>
         <profitability>7</profitability>
-        <timeConstraint>2024-08</timeConstraint>
+        <time-constraint>2024-08</time-constraint>
         <penalty>1000</penalty>
     </time-deposit>
 
@@ -39,7 +39,7 @@
         <depositor>Kyle Broflovski</depositor>
         <amount>30500</amount>
         <profitability>15</profitability>
-        <timeConstraint>2023-08</timeConstraint>
+        <time-constraint>2023-08</time-constraint>
         <penalty>2000</penalty>
     </time-deposit>
 
@@ -49,8 +49,8 @@
         <depositor>Kenny McCormick</depositor>
         <amount>10</amount>
         <profitability>3</profitability>
-        <timeConstraint>2022-09</timeConstraint>
-        <type>checkingAccount</type>
+        <time-constraint>2022-09</time-constraint>
+        <type>checking-account</type>
     </demand-deposit>
 
     <demand-deposit id="ARC-423232">
@@ -59,8 +59,8 @@
         <depositor>Randy Marsh</depositor>
         <amount>7000</amount>
         <profitability>12</profitability>
-        <timeConstraint>2024-07</timeConstraint>
-        <type>savingAccount</type>
+        <time-constraint>2024-07</time-constraint>
+        <type>saving-account</type>
     </demand-deposit>
 
     <time-deposit id="BHC-325722">
@@ -69,7 +69,7 @@
         <depositor>Wendy Testaburger</depositor>
         <amount>30500</amount>
         <profitability>15</profitability>
-        <timeConstraint>2023-08</timeConstraint>
+        <time-constraint>2023-08</time-constraint>
         <penalty>3000</penalty>
     </time-deposit>
 
@@ -79,8 +79,8 @@
         <depositor>Jimmy Valmer</depositor>
         <amount>4000</amount>
         <profitability>6</profitability>
-        <timeConstraint>2023-12</timeConstraint>
-        <type>checkingAccount</type>
+        <time-constraint>2023-12</time-constraint>
+        <type>checking-account</type>
     </demand-deposit>
 
     <demand-deposit id="AZA-874012" auto-renew="true">
@@ -89,8 +89,8 @@
         <depositor>Scott Malkinson</depositor>
         <amount>2000</amount>
         <profitability>1</profitability>
-        <timeConstraint>2028-12</timeConstraint>
-        <type>savingAccount</type>
+        <time-constraint>2028-12</time-constraint>
+        <type>saving-account</type>
     </demand-deposit>
 
-</banks>
+</deposits>

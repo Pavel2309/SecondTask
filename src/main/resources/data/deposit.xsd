@@ -23,7 +23,7 @@
             <element name="depositor" type="string"/>
             <element name="amount" type="tns:amountOnDeposit"/>
             <element name="profitability" type="tns:profitability"/>
-            <element name="timeConstraint" type="gYearMonth"/>
+            <element name="time-constraint" type="gYearMonth"/>
         </sequence>
         <attribute name="id" type="tns:accountId" use="required"/>
         <attribute name="auto-renew" use="optional" default="false"/>
@@ -51,8 +51,8 @@
 
     <simpleType name="demandDepositType">
         <restriction base="string">
-            <enumeration value="checkingAccount" />
-            <enumeration value="savingAccount" />
+            <enumeration value="checking-account" />
+            <enumeration value="saving-account" />
         </restriction>
     </simpleType>
 
