@@ -11,7 +11,7 @@ import java.util.Set;
 
 import static org.testng.Assert.*;
 
-public class DepositSaxBuilderTest {
+public class DepositStaxBuilderTest {
 
     private static final String DEPOSIT_XML_FILE = "data/deposit.xml";
     private AbstractDepositBuilder builder;
@@ -22,7 +22,7 @@ public class DepositSaxBuilderTest {
     public void setUp() {
 
         try {
-            builder = DepositBuilderFactory.getInstance().createDepositBuilder(ParserType.SAX);
+            builder = DepositBuilderFactory.getInstance().createDepositBuilder(ParserType.STAX);
         } catch (DepositEntityException e) {
             fail(e.getMessage(), e);
         }
@@ -66,4 +66,5 @@ public class DepositSaxBuilderTest {
 
         assertEquals(actual, expected);
     }
+
 }

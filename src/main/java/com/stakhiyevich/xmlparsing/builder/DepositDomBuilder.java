@@ -68,7 +68,7 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
         String id = depositElement.getAttribute(DepositXmlTag.ID.toString());
         boolean isAutoRenewable = depositElement.hasAttribute(DepositXmlTag.AUTO_RENEW.getValue()) ? Boolean.parseBoolean(depositElement.getAttribute(DepositXmlTag.AUTO_RENEW.getValue())) : DEFAULT_AUTO_RENEW;
         String name = getElementTextContent(depositElement, DepositXmlTag.NAME.getValue());
-        Country country = Country.extractCountryFromString(getElementTextContent(depositElement, DepositXmlTag.COUNTRY.getValue()));
+        DepositCountry country = DepositCountry.extractCountryFromString(getElementTextContent(depositElement, DepositXmlTag.COUNTRY.getValue()));
         String depositor = getElementTextContent(depositElement, DepositXmlTag.DEPOSITOR.getValue());
         int amount = Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.AMOUNT.getValue()));
         int profitability = Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.PROFITABILITY.getValue()));

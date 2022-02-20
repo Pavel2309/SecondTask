@@ -1,6 +1,6 @@
 package com.stakhiyevich.xmlparsing.entity;
 
-public enum Country {
+public enum DepositCountry {
 
     BELARUS("Belarus"),
     SWITZERLAND("Switzerland"),
@@ -9,7 +9,7 @@ public enum Country {
 
     private final String value;
 
-    Country(String value) {
+    DepositCountry(String value) {
         this.value = value;
     }
 
@@ -17,8 +17,8 @@ public enum Country {
         return value;
     }
 
-    public static Country extractCountryFromString(String text) {
-        for (Country country : Country.values()) {
+    public static DepositCountry extractCountryFromString(String text) {
+        for (DepositCountry country : DepositCountry.values()) {
             if (country.value.equalsIgnoreCase(text)) {
                 return country;
             }

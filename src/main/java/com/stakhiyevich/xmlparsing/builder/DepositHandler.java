@@ -74,7 +74,7 @@ public class DepositHandler extends DefaultHandler {
             switch (currentXmlTag) {
                 case NAME -> currentDeposit.setName(data);
                 case COUNTRY -> {
-                    currentDeposit.setCountry(Country.extractCountryFromString(data));
+                    currentDeposit.setCountry(DepositCountry.extractCountryFromString(data));
                 }
                 case DEPOSITOR -> currentDeposit.setDepositor(data);
                 case AMOUNT -> currentDeposit.setAmount(Integer.parseInt(data));

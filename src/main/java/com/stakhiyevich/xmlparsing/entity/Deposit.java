@@ -9,7 +9,7 @@ public abstract class Deposit {
     private String id;
     private boolean isAutoRenewable;
     private String name;
-    private Country country;
+    private DepositCountry country;
     private String depositor;
     private int amount;
     private int profitability;
@@ -19,7 +19,7 @@ public abstract class Deposit {
 
     }
 
-    public Deposit(String id, boolean isAutoRenewable, String name, Country country, String depositor, int amount, int profitability, YearMonth timeConstraint) {
+    public Deposit(String id, boolean isAutoRenewable, String name, DepositCountry country, String depositor, int amount, int profitability, YearMonth timeConstraint) {
         this.id = id;
         this.isAutoRenewable = isAutoRenewable;
         this.name = name;
@@ -54,11 +54,11 @@ public abstract class Deposit {
         this.name = name;
     }
 
-    public Country getCountry() {
+    public DepositCountry getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(DepositCountry country) {
         this.country = country;
     }
 

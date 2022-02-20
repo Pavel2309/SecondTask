@@ -31,7 +31,7 @@ public class DepositDomBuilderTest {
         demandDeposit.setId("ABC-000000");
         demandDeposit.setAutoRenewable(true);
         demandDeposit.setName("Demand deposit 1");
-        demandDeposit.setCountry(Country.CHINA);
+        demandDeposit.setCountry(DepositCountry.CHINA);
         demandDeposit.setDepositor("Eric Cartman");
         demandDeposit.setAmount(10000);
         demandDeposit.setProfitability(3);
@@ -41,7 +41,7 @@ public class DepositDomBuilderTest {
         timeDeposit = new TimeDeposit();
         timeDeposit.setId("AAC-233212");
         timeDeposit.setName("Time deposit 1");
-        timeDeposit.setCountry(Country.SWITZERLAND);
+        timeDeposit.setCountry(DepositCountry.SWITZERLAND);
         timeDeposit.setDepositor("Butters Stotch");
         timeDeposit.setAmount(30500);
         timeDeposit.setProfitability(7);

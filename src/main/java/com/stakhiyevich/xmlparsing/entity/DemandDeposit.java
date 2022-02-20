@@ -10,7 +10,7 @@ public class DemandDeposit extends Deposit {
 
     }
 
-    public DemandDeposit(String id, boolean isAutoRenewable, String name, Country country, String depositor, int amount, int profitability, YearMonth timeConstraint, DemandDepositType demandDepositType) {
+    public DemandDeposit(String id, boolean isAutoRenewable, String name, DepositCountry country, String depositor, int amount, int profitability, YearMonth timeConstraint, DemandDepositType demandDepositType) {
         super(id, isAutoRenewable, name, country, depositor, amount, profitability, timeConstraint);
         this.demandDepositType = demandDepositType;
     }
