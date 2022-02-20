@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="deposits"
-        xmlns:tns="deposits"
+        targetNamespace="http://www.example.com/deposits"
+        xmlns:tns="http://www.example.com/deposits"
         elementFormDefault="qualified">
 
-    <element name="banks">
+    <element name="deposits">
         <complexType>
             <sequence>
                 <element ref="tns:deposit" maxOccurs="unbounded"/>

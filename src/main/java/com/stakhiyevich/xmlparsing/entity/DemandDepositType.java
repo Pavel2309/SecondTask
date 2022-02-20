@@ -14,4 +14,13 @@ public enum DemandDepositType {
     public String getValue() {
         return value;
     }
+
+    public static DemandDepositType extractTypeFromString(String text) {
+        for (DemandDepositType type : DemandDepositType.values()) {
+            if (type.value.equalsIgnoreCase(text)) {
+                return type;
+            }
+        }
+        return null;
+    }
 }

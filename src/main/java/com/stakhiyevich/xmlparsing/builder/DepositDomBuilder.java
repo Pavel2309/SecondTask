@@ -14,8 +14,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.net.URL;
 import java.time.YearMonth;
-import java.util.Locale;
+
+import static com.stakhiyevich.xmlparsing.entity.Deposit.DEFAULT_AUTO_RENEW;
 
 public class DepositDomBuilder extends AbstractDepositBuilder {
 
@@ -36,18 +38,22 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
     public void buildDeposits(String filePath) throws DepositEntityException {
         Document doc;
         try {
-            doc = docBuilder.parse(filePath);
+            ClassLoader loader = getClass().getClassLoader();
+            URL resource = loader.getResource(filePath);
+
+            doc = docBuilder.parse(resource.getFile());
             Element root = doc.getDocumentElement();
+
             createDeposits(root, DepositXmlTag.DEMAND_DEPOSIT);
             createDeposits(root, DepositXmlTag.TIME_DEPOSIT);
         } catch (IOException | SAXException | DepositEntityException e) {
-            logger.error("error while parting by dom", e);
-            throw new DepositEntityException("error while parting by dom", e);
+            logger.error("error while parsing using dom", e);
+            throw new DepositEntityException("error while parsing using dom", e);
         }
     }
 
     public void createDeposits(Element root, DepositXmlTag depositXmlTag) throws DepositEntityException {
-        NodeList depositList = root.getElementsByTagName(depositXmlTag.toString());
+        NodeList depositList = root.getElementsByTagName(depositXmlTag.getValue());
         for (int i = 0; i < depositList.getLength(); i++) {
             Element depositElement = (Element) depositList.item(i);
             Deposit deposit = buildDeposit(depositElement, depositXmlTag);
@@ -60,30 +66,27 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
         Deposit deposit;
 
         String id = depositElement.getAttribute(DepositXmlTag.ID.toString());
-        boolean isAutoRenewable = Boolean.parseBoolean(depositElement.getAttribute(DepositXmlTag.AUTO_RENEW.toString()));
-        String name = depositElement.getAttribute(DepositXmlTag.NAME.toString());
-        Country country = Country.extractCountryFromString(depositElement.getAttribute(DepositXmlTag.COUNTRY.toString()));
-        String depositor = depositElement.getAttribute(DepositXmlTag.DEPOSITOR.toString());
-        int amount = Integer.parseInt(depositElement.getAttribute(DepositXmlTag.AMOUNT.toString()));
-        int profitability = Integer.parseInt(depositElement.getAttribute(DepositXmlTag.PROFITABILITY.toString()));
-        YearMonth timeConstraint = YearMonth.parse(depositElement.getAttribute(DepositXmlTag.TIME_CONSTRAINT.toString()));
+        boolean isAutoRenewable = depositElement.hasAttribute(DepositXmlTag.AUTO_RENEW.getValue()) ? Boolean.parseBoolean(depositElement.getAttribute(DepositXmlTag.AUTO_RENEW.getValue())) : DEFAULT_AUTO_RENEW;
+        String name = getElementTextContent(depositElement, DepositXmlTag.NAME.getValue());
+        Country country = Country.extractCountryFromString(getElementTextContent(depositElement, DepositXmlTag.COUNTRY.getValue()));
+        String depositor = getElementTextContent(depositElement, DepositXmlTag.DEPOSITOR.getValue());
+        int amount = Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.AMOUNT.getValue()));
+        int profitability = Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.PROFITABILITY.getValue()));
+        YearMonth timeConstraint = YearMonth.parse(getElementTextContent(depositElement, DepositXmlTag.TIME_CONSTRAINT.getValue()));
 
         switch (depositXmlTag) {
             case DEMAND_DEPOSIT -> {
                 deposit = new DemandDeposit();
-                String type = getElementTextContent(depositElement, DepositXmlTag.DEMAND_DEPOSIT.getValue());
-                ((DemandDeposit) deposit).setDemandDepositType(DemandDepositType.valueOf(type.toUpperCase(Locale.ROOT)));
+                DemandDepositType type = DemandDepositType.extractTypeFromString(getElementTextContent(depositElement, DepositXmlTag.TYPE.getValue()));
+                ((DemandDeposit) deposit).setDemandDepositType(type);
 
             }
             case TIME_DEPOSIT -> {
                 deposit = new TimeDeposit();
-                ((TimeDeposit) deposit).setPenalty(Integer.parseInt(
-                        getElementTextContent(depositElement,
-                                DepositXmlTag.PENALTY.getValue())));
+                ((TimeDeposit) deposit).setPenalty(Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.PENALTY.getValue())));
             }
-            default -> {
-                throw new DepositEntityException("invalid tag");
-            }
+
+            default -> throw new DepositEntityException("invalid tag");
         }
 
         deposit.setId(id);

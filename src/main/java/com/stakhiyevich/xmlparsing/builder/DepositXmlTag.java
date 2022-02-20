@@ -2,9 +2,9 @@ package com.stakhiyevich.xmlparsing.builder;
 
 enum DepositXmlTag {
 
-    BANKS("Banks"),
+    DEPOSITS("deposits"),
     ID("id"),
-    AUTO_RENEW("auto_renew"),
+    AUTO_RENEW("auto-renew"),
     DEMAND_DEPOSIT("demand-deposit"),
     TIME_DEPOSIT("time-deposit"),
     NAME("name"),
@@ -13,6 +13,7 @@ enum DepositXmlTag {
     AMOUNT("amount"),
     PROFITABILITY("profitability"),
     TIME_CONSTRAINT("timeConstraint"),
+    TYPE("type"),
     PENALTY("penalty");
 
     private static final String UNDERSCORE = "_";
@@ -25,6 +26,7 @@ enum DepositXmlTag {
         result = result.replace(UNDERSCORE, HYPHEN);
         return result;
     }
+
     private final String value;
 
     DepositXmlTag(String value) {

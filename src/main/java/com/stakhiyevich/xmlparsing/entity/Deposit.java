@@ -4,7 +4,7 @@ import java.time.YearMonth;
 
 public abstract class Deposit {
 
-    public static final boolean AUTO_RENEW = false;
+    public static final boolean DEFAULT_AUTO_RENEW = false;
 
     private String id;
     private boolean isAutoRenewable;

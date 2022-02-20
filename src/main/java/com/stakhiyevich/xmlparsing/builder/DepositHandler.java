@@ -42,7 +42,7 @@ public class DepositHandler extends DefaultHandler {
             boolean autoRenewable = Boolean.parseBoolean(attributes.getValue(1));
 
             currentDeposit.setId(depositId);
-            currentDeposit.setAutoRenewable(autoRenewable || Deposit.AUTO_RENEW);
+            currentDeposit.setAutoRenewable(autoRenewable || Deposit.DEFAULT_AUTO_RENEW);
 
         } else {
             String formattedName = formatName(qName);
