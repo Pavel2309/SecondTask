@@ -13,7 +13,7 @@
         <type>checkingAccount</type>
     </demand-deposit>
 
-    <demand-deposit id="AAC-423212" auto-renew="1">
+    <demand-deposit id="AAC-423212" auto-renew="true">
         <name>Demand deposit 2</name>
         <country>Belarus</country>
         <depositor>Stan Marsh</depositor>
@@ -43,7 +43,7 @@
         <penalty>2000</penalty>
     </time-deposit>
 
-    <demand-deposit id="ABC-429532" auto-renew="1">
+    <demand-deposit id="ABC-429532" auto-renew="true">
         <name>Demand deposit 4</name>
         <country>China</country>
         <depositor>Kenny McCormick</depositor>
@@ -83,7 +83,7 @@
         <type>checkingAccount</type>
     </demand-deposit>
 
-    <demand-deposit id="AZA-874012" auto-renew="1">
+    <demand-deposit id="AZA-874012" auto-renew="true">
         <name>Demand deposit 1</name>
         <country>Belarus</country>
         <depositor>Scott Malkinson</depositor>

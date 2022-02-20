@@ -26,7 +26,7 @@
             <element name="timeConstraint" type="gYearMonth"/>
         </sequence>
         <attribute name="id" type="tns:accountId" use="required"/>
-        <attribute name="auto-renew" use="optional" default="0"/>
+        <attribute name="auto-renew" use="optional" default="false"/>
     </complexType>
 
     <complexType name="demandDeposit">

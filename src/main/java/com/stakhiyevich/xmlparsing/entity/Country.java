@@ -16,4 +16,14 @@ public enum Country {
     public String getValue() {
         return value;
     }
+
+    public static Country extractCountryFromString(String text) {
+        for (Country country : Country.values()) {
+            if (country.value.equalsIgnoreCase(text)) {
+                return country;
+            }
+        }
+        return null;
+    }
+
 }

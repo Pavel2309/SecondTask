@@ -1,4 +1,5 @@
 package com.stakhiyevich.xmlparsing.builder;
 
-public class DomDepositBuilder {
+public enum ParserType {
+    DOM, SAX, STAX
 }
