@@ -1,7 +1,7 @@
 package com.stakhiyevich.xmlparsing.builder;
 
 import com.stakhiyevich.xmlparsing.entity.*;
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -24,18 +24,18 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
     private static final Logger logger = LogManager.getLogger();
     private final DocumentBuilder docBuilder;
 
-    public DepositDomBuilder() throws DepositEntityException {
+    public DepositDomBuilder() throws DepositDataException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             docBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
             logger.error("dom configuration failed", e);
-            throw new DepositEntityException("dom configuration failed", e);
+            throw new DepositDataException("dom configuration failed", e);
         }
     }
 
     @Override
-    public void buildDeposits(String filePath) throws DepositEntityException {
+    public void buildDeposits(String filePath) throws DepositDataException {
         Document doc;
         try {
             ClassLoader loader = getClass().getClassLoader();
@@ -46,13 +46,13 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
 
             createDeposits(root, DepositXmlTag.DEMAND_DEPOSIT);
             createDeposits(root, DepositXmlTag.TIME_DEPOSIT);
-        } catch (IOException | SAXException | DepositEntityException e) {
+        } catch (IOException | SAXException | DepositDataException e) {
             logger.error("error while parsing using dom", e);
-            throw new DepositEntityException("error while parsing using dom", e);
+            throw new DepositDataException("error while parsing using dom", e);
         }
     }
 
-    public void createDeposits(Element root, DepositXmlTag depositXmlTag) throws DepositEntityException {
+    public void createDeposits(Element root, DepositXmlTag depositXmlTag) throws DepositDataException {
         NodeList depositList = root.getElementsByTagName(depositXmlTag.getValue());
         for (int i = 0; i < depositList.getLength(); i++) {
             Element depositElement = (Element) depositList.item(i);
@@ -61,7 +61,7 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
         }
     }
 
-    private Deposit buildDeposit(Element depositElement, DepositXmlTag depositXmlTag) throws DepositEntityException {
+    private Deposit buildDeposit(Element depositElement, DepositXmlTag depositXmlTag) throws DepositDataException {
 
         Deposit deposit;
 
@@ -86,7 +86,7 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
                 ((TimeDeposit) deposit).setPenalty(Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.PENALTY.getValue())));
             }
 
-            default -> throw new DepositEntityException("invalid tag");
+            default -> throw new DepositDataException("invalid tag");
         }
 
         deposit.setId(id);

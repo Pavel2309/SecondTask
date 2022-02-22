@@ -1,7 +1,7 @@
 package com.stakhiyevich.xmlparsing.builder;
 
 import com.stakhiyevich.xmlparsing.entity.Deposit;
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +22,6 @@ public abstract class AbstractDepositBuilder {
         return depositSet;
     }
 
-    public abstract void buildDeposits(String filename) throws DepositEntityException;
+    public abstract void buildDeposits(String filename) throws DepositDataException;
 
 }

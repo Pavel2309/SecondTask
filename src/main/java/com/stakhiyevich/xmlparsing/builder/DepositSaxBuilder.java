@@ -1,6 +1,6 @@
 package com.stakhiyevich.xmlparsing.builder;
 
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -17,7 +17,7 @@ public class DepositSaxBuilder extends AbstractDepositBuilder {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void buildDeposits(String filename) throws DepositEntityException {
+    public void buildDeposits(String filename) throws DepositDataException {
 
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -36,7 +36,7 @@ public class DepositSaxBuilder extends AbstractDepositBuilder {
 
         } catch (SAXException | IOException | ParserConfigurationException e) {
             logger.error("error during sax parting", e);
-            throw new DepositEntityException("error during sax parting", e);
+            throw new DepositDataException("error during sax parting", e);
         }
     }
 }

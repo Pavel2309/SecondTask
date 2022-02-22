@@ -1,7 +1,7 @@
 package com.stakhiyevich.xmlparsing.builder;
 
 import com.stakhiyevich.xmlparsing.entity.*;
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +27,7 @@ public class DepositStaxBuilder extends AbstractDepositBuilder {
     }
 
     @Override
-    public void buildDeposits(String filename) throws DepositEntityException {
+    public void buildDeposits(String filename) throws DepositDataException {
         XMLStreamReader reader;
         String name;
 

@@ -1,6 +1,6 @@
 package com.stakhiyevich.xmlparsing.validator;
 
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
@@ -20,7 +20,7 @@ public class DepositXMLValidator {
     private static final Logger logger = LogManager.getLogger();
     private static final String SCHEMA_NAME = "data/deposit.xsd";
 
-    public static boolean isValidXML(String xmlFile) throws DepositEntityException {
+    public static boolean isValidXML(String xmlFile) throws DepositDataException {
         ClassLoader loader = DepositXMLValidator.class.getClassLoader();
         URL resource = loader.getResource(SCHEMA_NAME);
         File schemaFile = new File(resource.getFile());
@@ -36,7 +36,7 @@ public class DepositXMLValidator {
             validator.validate(source);
         } catch (IOException e) {
             logger.error("can't read file {}", xmlPath);
-            throw new DepositEntityException("can't open file " + xmlPath, e);
+            throw new DepositDataException("can't open file " + xmlPath, e);
         } catch (SAXException e) {
             logger.warn("file {} is not valid", xmlPath, e);
             return false;

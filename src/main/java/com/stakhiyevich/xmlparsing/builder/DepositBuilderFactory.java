@@ -1,6 +1,6 @@
 package com.stakhiyevich.xmlparsing.builder;
 
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,7 @@ public class DepositBuilderFactory {
 
     }
 
-    public AbstractDepositBuilder createDepositBuilder(ParserType parserType) throws DepositEntityException {
+    public AbstractDepositBuilder createDepositBuilder(ParserType parserType) throws DepositDataException {
         switch (parserType) {
             case DOM -> {
                 return new DepositDomBuilder();

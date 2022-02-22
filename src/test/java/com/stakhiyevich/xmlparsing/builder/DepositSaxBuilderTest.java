@@ -1,7 +1,7 @@
 package com.stakhiyevich.xmlparsing.builder;
 
 import com.stakhiyevich.xmlparsing.entity.*;
-import com.stakhiyevich.xmlparsing.exception.DepositEntityException;
+import com.stakhiyevich.xmlparsing.exception.DepositDataException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -23,7 +23,7 @@ public class DepositSaxBuilderTest {
 
         try {
             builder = DepositBuilderFactory.getInstance().createDepositBuilder(ParserType.SAX);
-        } catch (DepositEntityException e) {
+        } catch (DepositDataException e) {
             fail(e.getMessage(), e);
         }
 
@@ -58,7 +58,7 @@ public class DepositSaxBuilderTest {
 
         try {
             builder.buildDeposits(DEPOSIT_XML_FILE);
-        } catch (DepositEntityException e) {
+        } catch (DepositDataException e) {
             fail(e.getMessage(), e);
         }
 
