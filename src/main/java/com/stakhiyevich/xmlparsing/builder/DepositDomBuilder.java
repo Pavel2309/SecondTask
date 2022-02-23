@@ -22,6 +22,8 @@ import static com.stakhiyevich.xmlparsing.entity.Deposit.DEFAULT_AUTO_RENEW;
 public class DepositDomBuilder extends AbstractDepositBuilder {
 
     private static final Logger logger = LogManager.getLogger();
+    private static final char HYPHEN = '-';
+    private static final char UNDERSCORE = '_';
     private final DocumentBuilder docBuilder;
 
     public DepositDomBuilder() throws DepositDataException {
@@ -68,7 +70,7 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
         String id = depositElement.getAttribute(DepositXmlTag.ID.toString());
         boolean isAutoRenewable = depositElement.hasAttribute(DepositXmlTag.AUTO_RENEW.getValue()) ? Boolean.parseBoolean(depositElement.getAttribute(DepositXmlTag.AUTO_RENEW.getValue())) : DEFAULT_AUTO_RENEW;
         String name = getElementTextContent(depositElement, DepositXmlTag.NAME.getValue());
-        DepositCountry country = DepositCountry.extractCountryFromString(getElementTextContent(depositElement, DepositXmlTag.COUNTRY.getValue()));
+        DepositCountry country = DepositCountry.valueOf(getElementTextContent(depositElement, DepositXmlTag.COUNTRY.getValue()).toUpperCase());
         String depositor = getElementTextContent(depositElement, DepositXmlTag.DEPOSITOR.getValue());
         int amount = Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.AMOUNT.getValue()));
         int profitability = Integer.parseInt(getElementTextContent(depositElement, DepositXmlTag.PROFITABILITY.getValue()));
@@ -77,7 +79,7 @@ public class DepositDomBuilder extends AbstractDepositBuilder {
         switch (depositXmlTag) {
             case DEMAND_DEPOSIT -> {
                 deposit = new DemandDeposit();
-                DemandDepositType type = DemandDepositType.extractTypeFromString(getElementTextContent(depositElement, DepositXmlTag.TYPE.getValue()));
+                DemandDepositType type = DemandDepositType.valueOf(getElementTextContent(depositElement, DepositXmlTag.TYPE.getValue()).toUpperCase().replace(HYPHEN, UNDERSCORE));
                 ((DemandDeposit) deposit).setDemandDepositType(type);
 
             }

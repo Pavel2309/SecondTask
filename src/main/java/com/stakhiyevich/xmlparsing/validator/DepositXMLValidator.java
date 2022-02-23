@@ -20,14 +20,14 @@ public class DepositXMLValidator {
     private static final Logger logger = LogManager.getLogger();
     private static final String SCHEMA_NAME = "data/deposit.xsd";
 
-    public static boolean isValidXML(String xmlFile) throws DepositDataException {
+    public boolean isValidXML(String xmlFile) throws DepositDataException {
         ClassLoader loader = DepositXMLValidator.class.getClassLoader();
         URL resource = loader.getResource(SCHEMA_NAME);
         File schemaFile = new File(resource.getFile());
 
         URL resourceXML = loader.getResource(xmlFile);
         String xmlPath = new File(resourceXML.getFile()).getPath();
-        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI);
+        SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
         try {
             Schema schema = factory.newSchema(schemaFile);
@@ -38,11 +38,11 @@ public class DepositXMLValidator {
             logger.error("can't read file {}", xmlPath);
             throw new DepositDataException("can't open file " + xmlPath, e);
         } catch (SAXException e) {
-            logger.warn("file {} is not valid", xmlPath, e);
+            logger.error("file {} is not valid", xmlPath, e);
             return false;
         }
 
-        return false;
+        return true;
     }
 
 }

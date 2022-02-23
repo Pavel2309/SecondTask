@@ -37,22 +37,19 @@ public class DepositHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
-        if (qName.equals(DepositXmlTag.DEMAND_DEPOSIT.getValue())
-                || qName.equals(DepositXmlTag.TIME_DEPOSIT.getValue())) {
+        if (qName.equals(DepositXmlTag.DEMAND_DEPOSIT.getValue()) || qName.equals(DepositXmlTag.TIME_DEPOSIT.getValue())) {
 
             currentDeposit = qName.equals(DepositXmlTag.DEMAND_DEPOSIT.getValue()) ? new DemandDeposit() : new TimeDeposit();
 
-            currentDeposit.setId(attributes.getValue(0));
-            currentDeposit.setAutoRenewable(Boolean.parseBoolean(attributes.getValue(1)) || Deposit.DEFAULT_AUTO_RENEW);
+            currentDeposit.setAutoRenewable(Boolean.parseBoolean(attributes.getValue(DepositXmlTag.AUTO_RENEW.getValue())) || Deposit.DEFAULT_AUTO_RENEW);
+            currentDeposit.setId(attributes.getValue(DepositXmlTag.ID.getValue()));
 
         } else {
             DepositXmlTag temp = DepositXmlTag.valueOf(qName.toUpperCase().replace(HYPHEN, UNDERSCORE));
             if (textXmlTag.contains(temp)) {
                 currentXmlTag = temp;
             }
-
         }
-
     }
 
     @Override
@@ -74,23 +71,21 @@ public class DepositHandler extends DefaultHandler {
             switch (currentXmlTag) {
                 case NAME -> currentDeposit.setName(data);
                 case COUNTRY -> {
-                    currentDeposit.setCountry(DepositCountry.extractCountryFromString(data));
+                    currentDeposit.setCountry(DepositCountry.valueOf(data.toUpperCase()));
                 }
                 case DEPOSITOR -> currentDeposit.setDepositor(data);
                 case AMOUNT -> currentDeposit.setAmount(Integer.parseInt(data));
                 case PROFITABILITY -> currentDeposit.setProfitability(Integer.parseInt(data));
                 case TIME_CONSTRAINT -> currentDeposit.setTimeConstraint(YearMonth.parse(data));
                 case TYPE -> {
-                    DemandDeposit demandDeposit = (DemandDeposit) currentDeposit;;
-                    demandDeposit.setDemandDepositType(DemandDepositType.extractTypeFromString(data));
+                    DemandDeposit demandDeposit = (DemandDeposit) currentDeposit;
+                    demandDeposit.setDemandDepositType(DemandDepositType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
                 }
                 case PENALTY -> {
                     TimeDeposit timeDeposit = (TimeDeposit) currentDeposit;
                     timeDeposit.setPenalty(Integer.parseInt(data));
                 }
-                default -> throw new EnumConstantNotPresentException(
-                        currentXmlTag.getDeclaringClass(), currentXmlTag.name()
-                );
+                default -> throw new EnumConstantNotPresentException(currentXmlTag.getDeclaringClass(), currentXmlTag.name());
 
             }
         }

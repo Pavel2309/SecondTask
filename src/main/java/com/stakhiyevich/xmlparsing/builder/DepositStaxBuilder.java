@@ -92,7 +92,7 @@ public class DepositStaxBuilder extends AbstractDepositBuilder {
                 deposit.setName(data);
             }
             case COUNTRY -> {
-                deposit.setCountry(DepositCountry.extractCountryFromString(data));
+                deposit.setCountry(DepositCountry.valueOf(data.toUpperCase()));
             }
             case DEPOSITOR -> {
                 deposit.setDepositor(data);
@@ -107,7 +107,7 @@ public class DepositStaxBuilder extends AbstractDepositBuilder {
                 deposit.setTimeConstraint(YearMonth.parse(data));
             }
             case TYPE -> {
-                ((DemandDeposit) deposit).setDemandDepositType(DemandDepositType.extractTypeFromString(data));
+                ((DemandDeposit) deposit).setDemandDepositType(DemandDepositType.valueOf(data.toUpperCase().replace(HYPHEN, UNDERSCORE)));
             }
             case PENALTY -> {
                 ((TimeDeposit) deposit).setPenalty(Integer.parseInt(data));

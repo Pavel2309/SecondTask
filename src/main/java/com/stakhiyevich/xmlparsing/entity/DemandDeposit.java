@@ -15,8 +15,6 @@ public class DemandDeposit extends Deposit {
         this.demandDepositType = demandDepositType;
     }
 
-
-
     public DemandDepositType getDemandDepositType() {
         return demandDepositType;
     }
@@ -25,4 +23,29 @@ public class DemandDeposit extends Deposit {
         this.demandDepositType = demandDepositType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DemandDeposit)) return false;
+        if (!super.equals(o)) return false;
+
+        DemandDeposit that = (DemandDeposit) o;
+
+        return getDemandDepositType() == that.getDemandDepositType();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getDemandDepositType() != null ? getDemandDepositType().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("DemandDeposit{");
+        sb.append("demandDepositType=").append(demandDepositType);
+        sb.append('}');
+        return sb.toString();
+    }
 }
