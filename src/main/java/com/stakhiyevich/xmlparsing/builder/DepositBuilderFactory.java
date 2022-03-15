@@ -14,6 +14,10 @@ public class DepositBuilderFactory {
 
     }
 
+    public static DepositBuilderFactory getInstance() {
+        return instance;
+    }
+
     public AbstractDepositBuilder createDepositBuilder(ParserType parserType) throws DepositDataException {
         switch (parserType) {
             case DOM -> {
@@ -30,10 +34,4 @@ public class DepositBuilderFactory {
             }
         }
     }
-
-    public static DepositBuilderFactory getInstance() {
-        return instance;
-    }
-
-
 }

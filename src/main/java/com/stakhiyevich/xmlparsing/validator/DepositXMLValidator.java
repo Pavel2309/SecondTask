@@ -41,8 +41,6 @@ public class DepositXMLValidator {
             logger.error("file {} is not valid", xmlPath, e);
             return false;
         }
-
         return true;
     }
-
 }

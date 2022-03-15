@@ -9,7 +9,8 @@ import java.time.YearMonth;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.fail;
 
 public class DepositStaxBuilderTest {
 

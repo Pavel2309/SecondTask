@@ -19,6 +19,11 @@ enum DepositXmlTag {
 
     private static final String UNDERSCORE = "_";
     private static final String HYPHEN = "-";
+    private final String value;
+
+    DepositXmlTag(String value) {
+        this.value = value;
+    }
 
     @Override
     public String toString() {
@@ -26,12 +31,6 @@ enum DepositXmlTag {
         result = result.toLowerCase();
         result = result.replace(UNDERSCORE, HYPHEN);
         return result;
-    }
-
-    private final String value;
-
-    DepositXmlTag(String value) {
-        this.value = value;
     }
 
     public String getValue() {
